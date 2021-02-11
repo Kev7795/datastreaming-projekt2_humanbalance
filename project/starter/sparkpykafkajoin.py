@@ -47,7 +47,7 @@ spark.sparkContext.setLogLevel("WARN")
 redis_server_raw_df = spark\
     .readStream\
     .format("kafka") \
-    .option("kafka.bootstrap.servers", "kafka:9092") \
+    .option("kafka.bootstrap.servers", "kafka:19092") \
     .option("subscribe", "redis-server") \
     .option("startingOffsets", "earliest") \
     .load()
@@ -133,7 +133,7 @@ emailAndBirthYearStreamingDF = emailAndBirthDayStreamingDF\
 stedi_events_raw_df = spark\
     .readStream\
     .format("kafka") \
-    .option("kafka.bootstrap.servers", "kafka:9092") \
+    .option("kafka.bootstrap.servers", "kafka:19092") \
     .option("subscribe", "stedi-events") \
     .option("startingOffsets", "earliest") \
     .load()              
@@ -181,7 +181,7 @@ riskScoreByBirthYear\
     .selectExpr("cast(email as string) key", "to_json(struct(*)) value")\
     .writeStream\
     .format("kafka")\
-    .option("kafka.bootstrap.servers", "kafka:9092")\
+    .option("kafka.bootstrap.servers", "kafka:19092")\
     .option("topic", "riskdata")\
     .option("checkpointLocation", "/tmp/kafkacheckpoint2")\
     .start()\
