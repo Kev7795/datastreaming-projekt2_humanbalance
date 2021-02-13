@@ -18,7 +18,7 @@ spark.sparkContext.setLogLevel("WARN")
 stedi_events_raw_df = spark\
     .readStream\
     .format("kafka") \
-    .option("kafka.bootstrap.servers", "kafka:19092") \
+    .option("kafka.bootstrap.servers", "localhost:9092") \
     .option("subscribe", "stedi-events") \
     .option("startingOffsets", "earliest") \
     .load()
